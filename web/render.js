@@ -384,7 +384,7 @@ function drawTracks(canvas, layer, color, highlight) {
   ctx = canvas.getContext("2d");
   ctx.strokeStyle = color;
   ctx.lineCap = "round";
-  for(var track of pcbdata.tracks[layer]) {
+  for (var track of pcbdata.tracks[layer]) {
     if (highlight && highlightedNet != track.net) continue;
     ctx.lineWidth = track.width;
     ctx.beginPath();
@@ -399,7 +399,7 @@ function drawZones(canvas, layer, color, highlight) {
   ctx.strokeStyle = color;
   ctx.fillStyle = color;
   ctx.lineJoin = "round";
-  for(var zone of pcbdata.zones[layer]) {
+  for (var zone of pcbdata.zones[layer]) {
     if (!zone.path2d) {
       zone.path2d = getPolygonsPath(zone);
     }
@@ -649,7 +649,7 @@ function pointWithinPad(x, y, pad) {
 function netHitScan(layer, x, y) {
   // Check track segments
   if (settings.renderTracks && pcbdata.tracks) {
-    for(var track of pcbdata.tracks[layer]) {
+    for (var track of pcbdata.tracks[layer]) {
       if (pointWithinDistanceToSegment(x, y, ...track.start, ...track.end, track.width / 2)) {
         return track.net;
       }
@@ -658,7 +658,7 @@ function netHitScan(layer, x, y) {
   // Check pads
   if (settings.renderPads) {
     for (var footprint of pcbdata.footprints) {
-      for(var pad of footprint.pads) {
+      for (var pad of footprint.pads) {
         if (pad.layers.includes(layer) && pointWithinPad(x, y, pad)) {
           return pad.net;
         }
@@ -672,7 +672,7 @@ function pointWithinFootprintBbox(x, y, bbox) {
   var v = [x - bbox.pos[0], y - bbox.pos[1]];
   v = rotateVector(v, bbox.angle);
   return bbox.relpos[0] <= v[0] && v[0] <= bbox.relpos[0] + bbox.size[0] &&
-         bbox.relpos[1] <= v[1] && v[1] <= bbox.relpos[1] + bbox.size[1];
+    bbox.relpos[1] <= v[1] && v[1] <= bbox.relpos[1] + bbox.size[1];
 }
 
 function bboxHitScan(layer, x, y) {
@@ -832,9 +832,9 @@ function handlePointerMove(e, layerdict) {
     var otherPtr = Object.values(layerdict.pointerStates).filter((ptr) => ptr != thisPtr)[0];
 
     var oldDist = Math.sqrt(Math.pow(thisPtr.lastX - otherPtr.lastX, 2) + Math.pow(thisPtr.lastY - otherPtr.lastY, 2));
-    var newDist = Math.sqrt(Math.pow(e.offsetX - otherPtr.lastX, 2)     + Math.pow(e.offsetY - otherPtr.lastY, 2));
+    var newDist = Math.sqrt(Math.pow(e.offsetX - otherPtr.lastX, 2) + Math.pow(e.offsetY - otherPtr.lastY, 2));
 
-    var scaleFactor = newDist/oldDist;
+    var scaleFactor = newDist / oldDist;
 
     if (scaleFactor != NaN) {
       layerdict.transform.zoom *= scaleFactor;
@@ -879,27 +879,27 @@ function handleMouseWheel(e, layerdict) {
 }
 
 function addMouseHandlers(div, layerdict) {
-  div.addEventListener("pointerdown", function(e) {
+  div.addEventListener("pointerdown", function (e) {
     handlePointerDown(e, layerdict);
   });
-  div.addEventListener("pointermove", function(e) {
+  div.addEventListener("pointermove", function (e) {
     handlePointerMove(e, layerdict);
   });
-  div.addEventListener("pointerup", function(e) {
+  div.addEventListener("pointerup", function (e) {
     handlePointerUp(e, layerdict);
   });
-  var pointerleave = function(e) {
+  var pointerleave = function (e) {
     handlePointerLeave(e, layerdict);
   }
   div.addEventListener("pointercancel", pointerleave);
   div.addEventListener("pointerleave", pointerleave);
   div.addEventListener("pointerout", pointerleave);
 
-  div.onwheel = function(e) {
+  div.onwheel = function (e) {
     handleMouseWheel(e, layerdict);
   }
   for (var element of [div, layerdict.bg, layerdict.fab, layerdict.silk, layerdict.highlight]) {
-    element.addEventListener("contextmenu", function(e) {
+    element.addEventListener("contextmenu", function (e) {
       e.preventDefault();
     }, false);
   }
