@@ -286,7 +286,7 @@ function drawPadHole(ctx, pad, padHoleColor) {
   if (pad.type != "th") return;
   ctx.save();
   ctx.translate(...pad.pos);
-  ctx.rotate(deg2rad(pad.angle));
+  ctx.rotate(deg2rad(pad.angle + 90));
   ctx.fillStyle = padHoleColor;
   if (pad.drillshape == "oblong") {
     ctx.fill(getOblongPath(pad.drillsize));
