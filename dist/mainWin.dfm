@@ -168,7 +168,7 @@ object mainWin: TmainWin
           Top = 28
           Width = 113
           Height = 17
-          Caption = 'Mechanical 1'
+          Caption = 'Board Shape'
           TabOrder = 1
         end
       end

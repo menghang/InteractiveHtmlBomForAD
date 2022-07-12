@@ -95,28 +95,28 @@ function parsePcb(config) {
     pcb["Layers"] = {};
     
     if (config.PcbOutlineMech1) {
-        pcb.Layers.OUTLINE_LAYER = eMechanical1;
+        pcb.Layers.OUTLINE_LAYER = eMechanical15;
     } else {
-        pcb.Layers.OUTLINE_LAYER = String2Layer("Keep Out Layer");
+        pcb.Layers.OUTLINE_LAYER = String2Layer("Keep-Out Layer");
     }
     
-    pcb.Layers.INFO_LAYER = eMechanical2;
-    pcb.Layers.TOP_DIMENSIONS_LAYER = eMechanical11;
-    pcb.Layers.BOT_DIMENSIONS_LAYER = eMechanical12;
-    pcb.Layers.TOP_MECH_BODY_LAYER = eMechanical13;
-    pcb.Layers.BOT_MECH_BODY_LAYER = eMechanical14;
-    pcb.Layers.TOP_COURTYARD_LAYER = eMechanical15;
-    pcb.Layers.BOT_COURTYARD_LAYER = eMechanical16;
-    pcb.Layers.UNUSED_LAYERS = MkSet(eMechanical3, eMechanical4, eMechanical5, eMechanical6, eMechanical7, eMechanical8, eMechanical9, eMechanical10);
+    pcb.Layers.INFO_LAYER = eMechanical1;
+    pcb.Layers.TOP_DIMENSIONS_LAYER = eMechanical2;
+    pcb.Layers.BOT_DIMENSIONS_LAYER = eMechanical3;
+    pcb.Layers.TOP_MECH_BODY_LAYER = eMechanical4;
+    pcb.Layers.BOT_MECH_BODY_LAYER = eMechanical5;
+    pcb.Layers.TOP_COURTYARD_LAYER = eMechanical10;
+    pcb.Layers.BOT_COURTYARD_LAYER = eMechanical11;
+    pcb.Layers.UNUSED_LAYERS = MkSet(eMechanical6, eMechanical7, eMechanical8, eMechanical9, eMechanical12, eMechanical13);
     pcb.Layers.TOP_OVERLAY_LAYER = String2Layer("Top Overlay");
     pcb.Layers.BOT_OVERLAY_LAYER = String2Layer("Bottom Overlay");
-    pcb.Layers.TOP_SOLDERMASK_LAYER = String2Layer("Top Solder Mask");
-    pcb.Layers.BOT_SOLDERMASK_LAYER = String2Layer("Bottom Solder Mask");
+    pcb.Layers.TOP_SOLDERMASK_LAYER = String2Layer("Top Solder");
+    pcb.Layers.BOT_SOLDERMASK_LAYER = String2Layer("Bottom Solder");
     pcb.Layers.TOP_PASTE_LAYER = String2Layer("Top Paste");
     pcb.Layers.BOT_PASTE_LAYER = String2Layer("Bottom Paste");
     pcb.Layers.DRILL_GUIDE_LAYER = String2Layer("Drill Guide");
     pcb.Layers.DRILL_DRAWING_LAYER = String2Layer("Drill Drawing");
-    pcb.Layers.KEEP_OUT_LAYER = String2Layer("Keep Out Layer");
+    pcb.Layers.KEEP_OUT_LAYER = String2Layer("Keep-Out Layer");
     pcb.Layers.MULTI_LAYER = String2Layer("Multi Layer");
 
     function parseTrack(Prim) {
